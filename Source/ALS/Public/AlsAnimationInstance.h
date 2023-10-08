@@ -162,7 +162,7 @@ private:
 
 	void RefreshView(float DeltaTime);
 
-	void RefreshSpineRotation(float DeltaTime);
+	void RefreshSpineRotation(float SpineBlendAmount, float DeltaTime);
 
 protected:
 	UFUNCTION(BlueprintCallable, Category = "ALS|Animation Instance", Meta = (BlueprintProtected, BlueprintThreadSafe))
@@ -235,6 +235,11 @@ private:
 	void RefreshInAirLeanAmount(float DeltaTime);
 
 	// Feet
+
+public:
+	// If true, the foot locking will be temporarily "paused". This is not the same as a
+	// complete shutdown because the internal state of the foot locking will continue to update.
+	virtual bool IsFootLockInhibited() const;
 
 private:
 	void RefreshFeetOnGameThread();
